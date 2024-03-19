@@ -1,36 +1,33 @@
 pipeline {
-   environment {
-        registry = "piyushr269/survey645"
-        registryCredential = '99960e51-cea8-43f5-af12-78eedc62265a'
+    agent any
+    
+    environment {
+        DOCKERHUB_PASS = credentials("99960e51-cea8-43f5-af12-78eedc62265a")
     }
-   agent any
-
-   stages {
-      stage('Build') {
-         steps {
-            echo 'Building...'
-            script{
-               sh 'rm -rf *.war'
-               sh 'jar -cvf StudentSurvey.war -C src/main/webapp/ .'
-               docker.withRegistry('',registryCredential){
-                  def customImage = docker.build("piyushr269/survey645:${env.BUILD_NUMBER}")
-               }
+    
+    stages {
+        stage("Building the Student Survey Image") {
+            steps {
+                script {
+                    checkout scm
+                    sh 'rm -rf var'
+                    sh 'jar -cvf StudentSurvey.jar -C src/main/webapp/ .'
+                    def BUILD_TIMESTAMP = sh(script: 'date +%Y%m%d%H%M%S', returnStdout: true).trim()
+                    sh "docker login -u piyushr269 -p ${DOCKERHUB_PASS}"
+                    def customImage = docker.build("piyushr269/survey645:${BUILD_TIMESTAMP}", ".")
+                }
             }
-         }
-      }
-
-      stage('Push Image to Dockerhub') {
-         steps {
-            echo 'pushing to image to docker hub'
-            script{
-               docker.withRegistry('',registryCredential){
-                  sh "docker push piyushr269/survey645:${env.BUILD_NUMBER}"
-               }
+        }
+        
+        stage("Pushing Image to Docker Hub") {
+            steps {
+                script {
+                    sh "docker push piyushr269/survey645:${BUILD_TIMESTAMP}"
+                }
             }
-         }
-      }
-
-      stage('Deploying to Rancher to single node(deployed in 3 replicas)') {
+        }
+        
+        stage('Deploying to Rancher to single node(deployed in 3 replicas)') {
          steps {
             echo 'deploying on kubernetes cluster'
             script{
