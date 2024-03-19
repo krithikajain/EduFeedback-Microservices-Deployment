@@ -58,7 +58,7 @@
     docker tag survey645:0.1 <your username on DockerHub>/survey645:0.1
  ```
 
-### 4. Deploying the Application on Rancher to setup Kubernetes cluster
+### 4. Deploying the Application on Rancher to set the Kubernetes cluster
 
 - *Set Up Rancher:*
   - Run Rancher using Docker:
@@ -77,7 +77,7 @@
   - SSH into the rancher instance and run the command provided by Rancher to join the Kubernetes cluster.
 
 - *Deploy the Application:*
-  - In the Rancher UI, navigate to the rancher cluster and click "Workloads" in the top menu.
+  - In the Rancher UI, navigate to the Rancher cluster and click "Workloads" in the top menu.
   - Click "Deploy" and enter a name for the workload.
   - Select the namespace, and specify the number of replicas as 3 to ensure at least three pods are running all the time.
   - Create the deployment for node port and load balancer.
@@ -131,8 +131,9 @@ vi /home/Jenkins/.kube/config
   - Manage Jenkins>>Manage plugins
   - Install github and docker plugin without restart
   - Configure Environment variable for Dockerhub password
-  - Writing Jenkinsfile and defininf pipeline stages
- 
+  - Writing Jenkinsfile and defining pipeline stages
+
+ jenkinsfile ss
 
 - *Running the pipeline:*
   - Make changes into the web app created and push to github
@@ -140,6 +141,5 @@ vi /home/Jenkins/.kube/config
   - The pipeline will build the .war file, create a Docker image, push it to DockerHub, and deploy it to Rancher.
   - Finally, the changes are reflected.
     
-  
-
+  successful CI/CD pipleine ss
 
