@@ -81,9 +81,9 @@
   - Click "Deploy" and enter a name for the workload.
   - Select the namespace, and specify the number of replicas as 3 to ensure at least three pods are running all the time.
   - Create the deployment for node port and load balancer.
-  - In the "Containers" section, click "Add Container" and configure the container with the image you pushed to Docker Hub (e.g., <yourusername>/swe645:0.1).
   - Click "Launch" to deploy the application.
   - Verify that the application is running correctly on Kubernetes by accessing the service endpoint.
+  - Our Jenkins URL, http://44.218.2.166:8080/ 
 
 ### 5. Establishing a CI/CD Pipeline with GitHub and Jenkins
 
@@ -95,4 +95,27 @@
     sudo apt install openjdk-11-jdk
     wget -q -O - https://pkg.jenkins.io/debian/jenkins.io
     ```
+- *Install kubectl on the Jenkins:*
+```bash
+sudo apt install snapd
+sudo snap install kubectl --classic
+sudo su jenkins
+```
+
+- *Setting up kubernetes configurations:*
+- Create and opening .kube Directory 
+```bash
+mkdir /var/lib//.kube
+vi /home/Jenkins/.kube/config
+```
+- Copy the content of the Kubeconfig file provided by Rancher and paste it into the vi editor.
+
+- *Create Credentials for Git and Docker:*
+  - Go to Dashboard>> Manage Jenkins>> Manage Credentials
+  - Click on System under Stores scopes to Jenkins
+  - Click on Global credentials(unrestricted)
+  - Add your credentials of GitHub and Docker here.
+
+
+
 
