@@ -14,7 +14,7 @@ pipeline {
                     checkout scm
                     sh 'rm -rf var'
                     sh 'jar -cvf StudentSurvey.jar -C src/main/webapp/ .'
-                    sh "docker login -u piyushr269 -p ${DOCKERHUB_PASS}"
+                    sh "docker login -u piyushr269 -p "${DOCKERHUB_PASS}"  --password-stdin
                     def customImage = docker.build("piyushr269/survey645:${BUILD_TIMESTAMP}", ".")
                 }
             }
