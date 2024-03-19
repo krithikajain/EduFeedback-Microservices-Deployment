@@ -87,7 +87,8 @@ Krithika Jain
   - Create the deployment for node port and load balancer.
   - Click "Launch" to deploy the application.
   - Verify that the application is running correctly on Kubernetes by accessing the service endpoint.
-  - Our Jenkins URL, http://44.218.2.166:8080/ 
+  - Our Jenkins URL, http://44.218.2.166:8080/
+    ![image](https://github.com/krithikajain/SWE645-hw2/assets/161773814/cf073640-21fb-458a-b60c-cf034e4c4188)
 
 ### 5. Establishing a CI/CD Pipeline with GitHub and Jenkins
 
