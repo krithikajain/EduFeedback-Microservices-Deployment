@@ -14,7 +14,7 @@ pipeline {
                     sh 'jar -cvf StudentSurvey.jar -C src/main/webapp/ .'
                     def BUILD_TIMESTAMP = sh(script: 'date +%Y%m%d%H%M%S', returnStdout: true).trim()
                     echo "${DOCKERHUB_PASS}" | docker login -u piyushr269 --password-stdin
-                    def customImage = docker.build(piyushr269/studentsurvey:${BUILD_TIMESTAMP}", ".")
+                    def customImage = docker.build("piyushr269/studentsurvey:${BUILD_TIMESTAMP}", ".")
                 }
             }
         }
