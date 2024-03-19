@@ -1,7 +1,7 @@
 # SWE645-hw2
 ### Team members
 
-### Apllication url
+### Application url
 
 
 ### 1. Setting up git
@@ -80,14 +80,12 @@
   - In the Rancher UI, navigate to the rancher cluster and click "Workloads" in the top menu.
   - Click "Deploy" and enter a name for the workload.
   - Select the namespace, and specify the number of replicas as 3 to ensure at least three pods are running all the time.
+  - Create the deployment for node port and load balancer.
   - In the "Containers" section, click "Add Container" and configure the container with the image you pushed to Docker Hub (e.g., <yourusername>/swe645:0.1).
   - Click "Launch" to deploy the application.
   - Verify that the application is running correctly on Kubernetes by accessing the service endpoint.
 
 ### 5. Establishing a CI/CD Pipeline with GitHub and Jenkins
-
-- *Set Up GitHub Repository:*
-  - Create a GitHub repository to host your web application code (e.g., https://github.com/yourusername/SWE645-2).
 
 - *Install and Configure Jenkins:*
   - SSH into the Jenkins instance.
@@ -96,19 +94,5 @@
     sudo apt update
     sudo apt install openjdk-11-jdk
     wget -q -O - https://pkg.jenkins.io/debian/jenkins.io
-[21:59, 18/03/2024] Ganesh Madarasu Gmu: Jenkins pipeline Setup
-Create a job
-Select free style project
-Give a description
-choose github project
-add the github url https://github.com/hem1999/k8-automated-deployment
-choose git as SCM
-add repo url
-choose credentials which are already stored in Jenkins Credentials
-make branch to blank so that it will take the default as main.
-choose github hook trigger.
-then add the docker build job as a shell script
-docker build -t hemu1999/surveyform:latest .
-docker push hemu1999/surveyform:latest
-docker image rm hemu1999/surveyform:latest
-then next job is to deploy on kubernetes
+    ```
+
