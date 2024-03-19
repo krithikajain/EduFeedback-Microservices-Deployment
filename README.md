@@ -1,6 +1,9 @@
 # SWE645-hw2
 ### Team members
-
+Ganesh Madarasu 
+Piyush Rathod
+Mizba Chougle
+Krithika Jain
 ### Application url
 
 
@@ -66,6 +69,7 @@
     sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
     ```
   - Access the Rancher UI by navigating to https://<Elastic_IP_of_rancher_instance>/ in a web browser.
+  - In our case, http://3.220.78.159/dashboard/home
   - Follow the on-screen instructions to set up Rancher.
 
 - *Create a Kubernetes Cluster:*
@@ -141,5 +145,6 @@ vi /home/Jenkins/.kube/config
   - The pipeline will build the .war file, create a Docker image, push it to DockerHub, and deploy it to Rancher.
   - Finally, the changes are reflected.
     
-  successful CI/CD pipleine ss
+  successful CI/CD pipleine
+  ![image](https://github.com/krithikajain/SWE645-hw2/assets/161773814/162d5ce9-b08c-4882-9537-c7a22e9e56d4)
 
