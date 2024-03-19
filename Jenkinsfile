@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     def BUILD_TIMESTAMP = sh(script: 'date +%Y%m%d%H%M%S', returnStdout: true).trim()
-                    sh "kubectl set image deployment/container-0 survey=piyushr269/survey645:0.1"
+                    sh "kubectl set image deployment/survey container-0=piyushr269/survey645:0.1"
                 }
             }
         }
@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script {
                     def BUILD_TIMESTAMP = sh(script: 'date +%Y%m%d%H%M%S', returnStdout: true).trim()
-                    sh "kubectl set image deployment/surveyl surveyl=piyushr269/survey645:${0.1}"
+                    sh "kubectl set image deployment/surveyl container-0=piyushr269/survey645:${0.1}"
                 }
             }
         }
