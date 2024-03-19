@@ -6,10 +6,10 @@
 
 ### 1. Setting up git
 - Create an empty repository on Git
-(https://github.com/krithikajain/SWE645-hw2)
 - Clone in to your local.
 - Add the folders into the repo and use git add, commit.
 - Push your code to Github using git push.
+- Our GitHub --> https://github.com/krithikajain/SWE645-hw2
 
 ### 2. Creating EC2 Instances
 
@@ -103,12 +103,12 @@ sudo su jenkins
 ```
 
 - *Setting up kubernetes configurations:*
-- Create and opening .kube Directory 
+  - Create and opening .kube Directory 
 ```bash
 mkdir /var/lib//.kube
 vi /home/Jenkins/.kube/config
 ```
-- Copy the content of the Kubeconfig file provided by Rancher and paste it into the vi editor.
+  - Copy the content of the Kubeconfig file provided by Rancher and paste it into the vi editor.
 
 - *Create Credentials for Git and Docker:*
   - Go to Dashboard>> Manage Jenkins>> Manage Credentials
@@ -116,6 +116,30 @@ vi /home/Jenkins/.kube/config
   - Click on Global credentials(unrestricted)
   - Add your credentials of GitHub and Docker here.
 
+- *Building pipeline:*
+  - Log in to the Jenkins UI, click on "new-item"
+  - Enter a name for the pipeline and select "Pipeline" type to create
+  - In the pipeline configuration, scroll down to the "Build Triggers" section.
+  - Select "Build periodically" and set up a cron job to check for changes every minute. For example: * * * * *
 
+- *Connect to git repository:*
+  - Pipline>> Pipeline script from SCM
+  - Choose git and enter repo url and add credentials.
+  - Under Script Path field enter Jenkinsfile
+ 
+- *Install Plugins and writing Jenkinsfile:*
+  - Manage Jenkins>>Manage plugins
+  - Install github and docker plugin without restart
+  - Configure Environment variable for Dockerhub password
+  - Writing Jenkinsfile and defininf pipeline stages
+ 
+
+- *Running the pipeline:*
+  - Make changes into the web app created and push to github
+  - Jenkins pipeline will automatically trigger these changes
+  - The pipeline will build the .war file, create a Docker image, push it to DockerHub, and deploy it to Rancher.
+  - Finally, the changes are reflected.
+    
+  
 
 
