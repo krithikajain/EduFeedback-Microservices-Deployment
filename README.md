@@ -1,9 +1,17 @@
 # SWE645-hw2
-Team members
+### Team members
+
+### Apllication url
 
 
+### 1. Setting up git
+- Create an empty repository on Git
+(https://github.com/krithikajain/SWE645-hw2)
+- Clone in to your local.
+- Add the folders into the repo and use git add, commit.
+- Push your code to Github using git push.
 
-### 1. Creating EC2 Instances
+### 2. Creating EC2 Instances
 
 - *Launch EC2 Instances:*
   - Navigate to the AWS Management Console and select EC2.
@@ -14,8 +22,7 @@ Team members
   - Review and launch the instance. Repeat this process to create two instances, one named Rancher and the other named Jenkins.
   - Associate Elastic IPs with each instance for stable public IP addresses.
 
-### 2. Containerizing the Web Application
-
+### 3. Creating and containerizing a Docker image and pushing it to DockerHub 
 - *Set Up Docker:*
   - SSH into the rancher instance.
   - Install Docker:
@@ -51,44 +58,39 @@ Team members
     docker tag survey645:0.1 <your username on DockerHub>/survey645:0.1
  ```
 
-### 3. Deploying the Application on Kubernetes
-
-- *Install Kubernetes CLI (kubectl):*
-  - Install kubectl on the rancher instance:
-    
-    sudo snap install kubectl --classic
-    
+### 4. Deploying the Application on Rancher to setup Kubernetes cluster
 
 - *Set Up Rancher:*
   - Run Rancher using Docker:
-    
+    ```bash
     sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
-    
+    ```
   - Access the Rancher UI by navigating to https://<Elastic_IP_of_rancher_instance>/ in a web browser.
   - Follow the on-screen instructions to set up Rancher.
 
 - *Create a Kubernetes Cluster:*
   - In the Rancher UI, click on "Clusters" in the top menu, then click "Add Cluster".
   - Choose "From existing nodes (Custom)" as the cluster type.
-  - Enter a name for the cluster (e.g., "ass2") and proceed with the basic setup.
+  - Enter a name for the cluster and proceed with the basic setup, check for etcd and control plane along with worker nodes that needs to be registered
   - Click "Next", then "Save". Rancher will provide a command to run on the EC2 instance to join the cluster.
+  - This will be our worker node from where we will pull the image.
   - SSH into the rancher instance and run the command provided by Rancher to join the Kubernetes cluster.
 
 - *Deploy the Application:*
-  - In the Rancher UI, navigate to the "ass2" cluster and click "Workloads" in the top menu.
-  - Click "Deploy" and enter a name for the workload (e.g., "ass2").
-  - Select the namespace, and specify the number of replicas (e.g., 3) to ensure at least three pods are running all the time.
-  - In the "Containers" section, click "Add Container" and configure the container with the image you pushed to Docker Hub (e.g., yourusername/swe645a2:latest).
+  - In the Rancher UI, navigate to the rancher cluster and click "Workloads" in the top menu.
+  - Click "Deploy" and enter a name for the workload.
+  - Select the namespace, and specify the number of replicas as 3 to ensure at least three pods are running all the time.
+  - In the "Containers" section, click "Add Container" and configure the container with the image you pushed to Docker Hub (e.g., <yourusername>/swe645:0.1).
   - Click "Launch" to deploy the application.
   - Verify that the application is running correctly on Kubernetes by accessing the service endpoint.
 
-### 4. Establishing a CI/CD Pipeline with GitHub and Jenkins
+### 5. Establishing a CI/CD Pipeline with GitHub and Jenkins
 
 - *Set Up GitHub Repository:*
   - Create a GitHub repository to host your web application code (e.g., https://github.com/yourusername/SWE645-2).
 
 - *Install and Configure Jenkins:*
-  - SSH into the jenkins instance.
+  - SSH into the Jenkins instance.
   - Install Jenkins and start the service:
     ```
     sudo apt update
