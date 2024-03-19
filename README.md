@@ -1,11 +1,9 @@
 # SWE645-hw2
 ### Team members
-Ganesh Madarasu 
-Piyush Rathod
-Mizba Chougle
+Ganesh Madarasu,
+Piyush Rathod,
+Mizba Chougle,
 Krithika Jain
-### Application url
-
 
 ### 1. Setting up git
 - Create an empty repository on Git
@@ -69,7 +67,7 @@ Krithika Jain
     sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
     ```
   - Access the Rancher UI by navigating to https://<Elastic_IP_of_rancher_instance>/ in a web browser.
-  - In our case, http://3.220.78.159/dashboard/home
+  - Our rancher url, http://3.220.78.159/dashboard/home
   - Follow the on-screen instructions to set up Rancher.
 
 - *Create a Kubernetes Cluster:*
@@ -110,8 +108,8 @@ sudo su jenkins
 - *Setting up kubernetes configurations:*
   - Create and opening .kube Directory 
 ```bash
-mkdir /var/lib//.kube
-vi /home/Jenkins/.kube/config
+mkdir /var/lib/jenkins/.kube
+vi /var/lib/jenkins/.kube/config
 ```
   - Copy the content of the Kubeconfig file provided by Rancher and paste it into the vi editor.
 
