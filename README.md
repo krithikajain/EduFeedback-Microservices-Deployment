@@ -133,7 +133,7 @@ vi /home/Jenkins/.kube/config
   - Configure Environment variable for Dockerhub password
   - Writing Jenkinsfile and defining pipeline stages
 
- jenkinsfile ss
+![image](https://github.com/krithikajain/SWE645-hw2/assets/161773814/02af46f2-fc8b-446c-922f-c23d18d8f24f)
 
 - *Running the pipeline:*
   - Make changes into the web app created and push to github
