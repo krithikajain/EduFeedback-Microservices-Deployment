@@ -1,4 +1,4 @@
-# SWE645-hw2
+# Student survey form
 ### Team members
 Ganesh Madarasu,
 Piyush Rathod,
